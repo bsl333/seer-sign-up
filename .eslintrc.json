@@ -23,7 +23,8 @@
       1,
       {
         "allow": [
-          "info"
+          "info",
+          "error"
         ]
       }
     ]
