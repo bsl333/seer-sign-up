@@ -9,6 +9,6 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+app.listen(PORT, () => console.info(`listening on port ${PORT}`));
 
 module.exports = app;
