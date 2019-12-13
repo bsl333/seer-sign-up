@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -31,10 +32,15 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function() {
   const userObj = this.toObject();
   delete userObj.__v;
+  delete userObj.password;
   return userObj;
 };
+userSchema.pre('save', async function(next) {
+  this.password = await bcrypt.hash(this.password, 8);
+  next();
+});
 
 module.exports = mongoose.model('User', userSchema);
