@@ -1,7 +1,7 @@
 # Seer Sign Up API
 
-Application was built using NodeJS, Express and Mongoose to interface with MongoDB. 
-MongoDB is hosted via Mongo atlas. 
+Application was built using NodeJS, Express and Mongoose to interface with MongoDB.
+MongoDB is hosted via Mongo atlas.
 
 client can be found [here](https://github.com/bsl333/seer-sign-up-client)
 
@@ -15,11 +15,13 @@ For development, run `npm run dev`; will kick off server with nodemon
 
 Otherwise, run `npm start`
 
+Will run on port 5000. To change, edit PORT in .env file.
+
 #### API Routes
 
 Can import postman api docs from postman folder
 
-### Samples 
+### Samples
 
 
 ##### create a user:
@@ -28,15 +30,15 @@ sample req body:
 ```
 {
   "firstName": "test",
-  "lastName": "user,
+  "lastName": "user",
   "username": "testUser",
   "email": "testUser@aol.com",
   "password": "testUserPassword"
 }
-// if email/username don't exists, response: 
+// if email/username don't exists, response:
 {
   status: 201,
-  body: {  
+  body: {
     "firstName": "test",
     "lastName": "user,
     "username": "testUser",
@@ -71,5 +73,3 @@ GET /users/check/username/:username
 
 2) After connecting, `let userCollection = db.users`
 3) To view all documents:  `userCollection.find().pretty()`
-
-

@@ -13,4 +13,16 @@ app.use(cors());
 
 app.use('/users', userRouter);
 
+app.use((req, _, next) => {
+  const status = 404;
+  const message = `Not found. Request: ${req.method} ${req.url}`;
+  next({ status, message });
+});
+
+// default error messaging
+app.use((err, _, res, next) => {
+  const { status = 500, message = 'Internal Server Error' } = err;
+  res.status(status).send({ error: message });
+});
+
 module.exports = app;
