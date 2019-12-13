@@ -30,12 +30,14 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   }
-});
+}, { timestamps: true });
 
 userSchema.methods.toJSON = function() {
   const userObj = this.toObject();
   delete userObj.__v;
   delete userObj.password;
+  delete userObj.createdAt;
+  delete userObj.updatedAt;
   return userObj;
 };
 userSchema.pre('save', async function(next) {

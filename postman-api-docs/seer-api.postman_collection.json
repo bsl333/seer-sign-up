@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "ca51ec03-99c6-42e5-a0dc-c4525ea9c7ff",
+		"name": "seer-api",
+		"description": "Seer log-in api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"{{$randomEmail}}\",\n\t\"lastName\": \"{{$randomLastName}}\",\n\t\"email\": \"{{$randomEmail}}\",\n\t\"username\": \"{{$randomUserName}}\",\n\t\"password\": \"1234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						""
+					]
+				},
+				"description": "Creates a user if **all** of the below params are provided and valid:\n\nfirstName: <string>\nlastName: <string>\nemail: <string>\nusername: <string>\npassword: <string>"
+			},
+			"response": []
+		},
+		{
+			"name": "check if email is taken - should return true",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/check/email/{{$randomEmail}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"check",
+						"email",
+						"{{$randomEmail}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "checking if a random email exists - should return true"
+			},
+			"response": []
+		},
+		{
+			"name": "check if email is taken - should return false",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/check/email/user1@aol.com",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"check",
+						"email",
+						"user1@aol.com"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Checking for an email that should always exists (a@a.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "check if username is taken - should return true",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/check/username/{{$randomUserName}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"check",
+						"username",
+						"{{$randomUserName}}"
+					]
+				},
+				"description": "Check if user db already contains the username provided - should return true - using a random username"
+			},
+			"response": []
+		},
+		{
+			"name": "check if username is taken  - should return false",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/check/username/user1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"check",
+						"username",
+						"user1"
+					]
+				},
+				"description": "Should return false, using a known username (user1)"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a4f5b016-a67c-48a5-b56e-b92a85272bce",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3d8b7bc4-a62f-436a-ba3f-ace0061ee061",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0171ea83-0262-4c0b-8cf3-73d3c255543c",
+			"key": "url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
