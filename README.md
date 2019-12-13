@@ -64,3 +64,12 @@ GET /users/check/username/:username
 }
 ```
 
+#### Viewing Data:
+**NOTE:** Must have Mongo shell installed
+
+1) To connect to the Atlas cluster, run `mongo "mongodb+srv://cluster0-fi29r.mongodb.net/test"  --username devUser --password devUserPWD` from terminal.
+
+2) After connecting, `let userCollection = db.users`
+3) To view all documents:  `userCollection.find().pretty()`
+
+
